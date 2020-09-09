@@ -6,7 +6,7 @@ The Chatelaine application will facilitate the aspects of selecting and living i
 
 
 **Requirements**
-* Users can:
+Users can:
 * Register
 * Login/Logout
 * Update their information
