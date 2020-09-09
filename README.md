@@ -6,15 +6,15 @@ The Chatelaine application will facilitate the aspects of selecting and living i
 
 
 **Requirements**
-*Users can:
-*Register
-*Login/Logout
-*Update their information
-*The Twilio API will send SMS to users to send reminders, alert messages (illegal parking, when issues are resolved etc.)
-*Sign a lease
-*Create and add to a list of community events
-*Create maintenance tickets
-*Respond to maintenance tickets
+* Users can:
+* Register
+* Login/Logout
+* Update their information
+* The Twilio API will send SMS to users to send reminders, alert messages (illegal parking, when issues are resolved etc.)
+* Sign a lease
+* Create and add to a list of community events
+* Create maintenance tickets
+* Respond to maintenance tickets
 
 
 
