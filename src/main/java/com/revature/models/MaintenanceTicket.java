@@ -14,13 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="users")
+@Table (name="maintenance_tickets")
 public class MaintenanceTicket {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ticket_id")
-	private int ticketID;
+	private int ticketId;
 	private String description;
 	@Column (nullable=false)
 	private Timestamp submitted;
