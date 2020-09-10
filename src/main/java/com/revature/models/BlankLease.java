@@ -1,0 +1,105 @@
+package com.revature.models;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="blank_lease")
+public class BlankLease implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="blank_lease_id", nullable=false)
+	private int blankLeaseID;
+	@Column(name="blank_lease", nullable=false)
+	private String blankLeaseName;
+	@OneToMany(mappedBy="blankLeaseID", fetch=FetchType.LAZY)
+	private List<User> userList;
+	
+	
+	public BlankLease() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public BlankLease(String blankLeaseName, List<User> userList) {
+		super();
+		this.blankLeaseName = blankLeaseName;
+		this.userList = userList;
+	}
+	public BlankLease(int blankLeaseID, String blankLeaseName, List<User> userList) {
+		super();
+		this.blankLeaseID = blankLeaseID;
+		this.blankLeaseName = blankLeaseName;
+		this.userList = userList;
+	}
+	public int getBlankLeaseID() {
+		return blankLeaseID;
+	}
+	public void setBlankLeaseID(int blankLeaseID) {
+		this.blankLeaseID = blankLeaseID;
+	}
+	public String getBlankLeaseName() {
+		return blankLeaseName;
+	}
+	public void setBlankLeaseName(String blankLeaseName) {
+		this.blankLeaseName = blankLeaseName;
+	}
+	public List<User> getUserList() {
+		return userList;
+	}
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + blankLeaseID;
+		result = prime * result + ((blankLeaseName == null) ? 0 : blankLeaseName.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BlankLease other = (BlankLease) obj;
+		if (blankLeaseID != other.blankLeaseID)
+			return false;
+		if (blankLeaseName == null) {
+			if (other.blankLeaseName != null)
+				return false;
+		} else if (!blankLeaseName.equals(other.blankLeaseName))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "BlankLease [blankLeaseID=" + blankLeaseID + ", blankLeaseName=" + blankLeaseName + "]";
+	}
+	
+	
+	
+
+	
+	
+
+}
