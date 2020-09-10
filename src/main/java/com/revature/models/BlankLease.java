@@ -25,8 +25,7 @@ public class BlankLease implements Serializable {
 	private int blankLeaseID;
 	@Column(name="blank_lease", nullable=false)
 	private String blankLeaseName;
-	@OneToMany(mappedBy="blankLeaseID", fetch=FetchType.LAZY)
-	private List<User> userList;
+	
 	
 	
 	public BlankLease() {
@@ -90,10 +89,6 @@ public class BlankLease implements Serializable {
 		} else if (!blankLeaseName.equals(other.blankLeaseName))
 			return false;
 		return true;
-	}
-	@Override
-	public String toString() {
-		return "BlankLease [blankLeaseID=" + blankLeaseID + ", blankLeaseName=" + blankLeaseName + "]";
 	}
 	
 	
