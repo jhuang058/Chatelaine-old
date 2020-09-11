@@ -18,11 +18,12 @@
 		<property name="hibernate.hbm2ddl.auto">create</property>
 		
 		<!-- Now we need our mappings -->
-		<mapping class="com.revature.models.UserRole"/>
+		<mapping class="com.revature.models.BlankLease"/>
+		<mapping class="com.revature.models.Events"/>
+		<mapping class="com.revature.models.MaintenanceTicket"/>
+		<mapping class="com.revature.models.Role"/>
+		<mapping class="com.revature.models.TicketStatus"/>
 		<mapping class="com.revature.models.User"/>
-		<mapping class="com.revature.models.Reimbursement"/>
-		<mapping class="com.revature.models.ReimbursementStatus"/>
-		<mapping class="com.revature.models.ReimbursementType"/>
 		
 	</session-factory>
 </hibernate-configuration>

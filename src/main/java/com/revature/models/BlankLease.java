@@ -32,16 +32,14 @@ public class BlankLease implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public BlankLease(String blankLeaseName, List<User> userList) {
+	public BlankLease(String blankLeaseName) {
 		super();
 		this.blankLeaseName = blankLeaseName;
-		this.userList = userList;
 	}
-	public BlankLease(int blankLeaseID, String blankLeaseName, List<User> userList) {
+	public BlankLease(int blankLeaseID, String blankLeaseName) {
 		super();
 		this.blankLeaseID = blankLeaseID;
 		this.blankLeaseName = blankLeaseName;
-		this.userList = userList;
 	}
 	public int getBlankLeaseID() {
 		return blankLeaseID;
@@ -55,12 +53,7 @@ public class BlankLease implements Serializable {
 	public void setBlankLeaseName(String blankLeaseName) {
 		this.blankLeaseName = blankLeaseName;
 	}
-	public List<User> getUserList() {
-		return userList;
-	}
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
-	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -90,11 +83,5 @@ public class BlankLease implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-
-	
-	
 
 }

@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
@@ -15,7 +16,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table (name="maintenance_tickets")
-public class MaintenanceTicket {
+public class MaintenanceTicket implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,7 +30,7 @@ public class MaintenanceTicket {
 	@Column (nullable=false)
 	private Timestamp resolved;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="userID", nullable=false)
+	@JoinColumn(name="user_id", nullable=false)
 	private User author;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="status_id", nullable=false)

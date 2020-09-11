@@ -1,7 +1,7 @@
 package com.revature.models;
 
-import java.io.File;
 import java.io.Serializable;
+import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.ManyToAny;
 
 @Entity
 public class User implements Serializable{
@@ -39,7 +37,7 @@ public class User implements Serializable{
 	@JoinColumn(name="user_role_id", referencedColumnName ="user_role_id")
 	private Role userRole;
 	@Column(name="signed_lease", nullable=true)
-	private File signedLease;
+	private Blob signedLease;
 	
 	public int getUserID() {
 		return userID;
@@ -83,13 +81,12 @@ public class User implements Serializable{
 	public void setUserRole(Role userRole) {
 		this.userRole = userRole;
 	}
-	public File getSignedLease() {
+	public Blob getSignedLease() {
 		return signedLease;
 	}
-	public void setSignedLease(File signedLease) {
+	public void setSignedLease(Blob signedLease) {
 		this.signedLease = signedLease;
 	}
 
-	
 	
 }
