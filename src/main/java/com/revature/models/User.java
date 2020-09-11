@@ -2,7 +2,9 @@ package com.revature.models;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +12,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -38,6 +42,10 @@ public class User implements Serializable{
 	private Role userRole;
 	@Column(name="signed_lease", nullable=true)
 	private Blob signedLease;
+//	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+//	@JoinColumn(name="event_id", nullable=false)
+//	private Events events;
+	
 	
 	public int getUserID() {
 		return userID;

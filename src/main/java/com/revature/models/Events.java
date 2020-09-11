@@ -32,9 +32,9 @@ public class Events implements Serializable{
 	private String eventDescription;
 	@Column(name="event_date", nullable=false)
 	private Timestamp eventDate;
-	@ManyToMany(mappedBy="roleID", fetch=FetchType.LAZY)
-	private List<User> userList;
-	
+//	@ManyToMany(mappedBy="userID", fetch=FetchType.LAZY)
+//	private List<User> userList;
+//	
 	
 	
 	
@@ -43,20 +43,20 @@ public class Events implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Events(String eventName, String eventDescription, Timestamp eventDate, List<User> userList) {
+	public Events(String eventName, String eventDescription, Timestamp eventDate) {
 		super();
 		this.eventName = eventName;
 		this.eventDescription = eventDescription;
 		this.eventDate = eventDate;
-		this.userList = userList;
+		
 	}
-	public Events(int eventID, String eventName, String eventDescription, Timestamp eventDate, List<User> userList) {
+	public Events(int eventID, String eventName, String eventDescription, Timestamp eventDate) {
 		super();
 		this.eventID = eventID;
 		this.eventName = eventName;
 		this.eventDescription = eventDescription;
 		this.eventDate = eventDate;
-		this.userList = userList;
+		
 	}
 	public int getEventID() {
 		return eventID;
@@ -82,12 +82,7 @@ public class Events implements Serializable{
 	public void setEventDate(Timestamp eventDate) {
 		this.eventDate = eventDate;
 	}
-	public List<User> getUserList() {
-		return userList;
-	}
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
-	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
