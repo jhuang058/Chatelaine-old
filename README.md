@@ -18,4 +18,4 @@ The Chatelaine application will facilitate the aspects of selecting and living i
 
 
 
-![](https://github.com/jhuang058/chatelaine/blob/master/RDS.PNG?raw=true)
+![](https://github.com/jhuang058/chatelaine/blob/master/ERD.PNG?raw=true)
