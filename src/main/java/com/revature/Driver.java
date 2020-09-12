@@ -37,9 +37,9 @@ public class Driver {
 		
 		Role r = new Role("Tenant");
 		
-		Event e = new Event("BBQ", "Texas BBQ and fireworks!!!", Date.valueOf("2021-07-04"));
 		User u = new User("hk", pw1, "Hello", "Kitty", "15719992107", r, null);
-		
+		Event e = new Event("BBQ", "Texas BBQ and fireworks!!!", Date.valueOf("2021-07-04"), u);
+				
 		List<Event> eventList = new ArrayList<Event>();
 		List<User> userList = new ArrayList<User>();
 		eventList.add(e);
@@ -51,16 +51,16 @@ public class Driver {
 		IEventDAO eDao = new EventDAO();
 		eDao.addEvent(e);
 		
-		IUserDAO uDao = new UserDAO();
-		uDao.addUser(u);
+//		IUserDAO uDao = new UserDAO();
+//		uDao.addUser(u);
 
-//		Session ses2 = HibernateUtil.getSession();
-//		Transaction trans2 = ses2.beginTransaction();
-//		try {
-//			ses2.save(u);
-//			trans2.commit();
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//		}
+		Session ses2 = HibernateUtil.getSession();
+		Transaction trans2 = ses2.beginTransaction();
+		try {
+			ses2.save(u);
+			trans2.commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 	}
 }

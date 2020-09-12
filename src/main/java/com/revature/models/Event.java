@@ -6,13 +6,17 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -31,7 +35,14 @@ public class Event implements Serializable{
 	private String eventDescription;
 	@Column(name="event_date", nullable=false)
 	private Date eventDate;
-	@ManyToMany(mappedBy="eventList")
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="user_id", nullable=false)
+	private User eventCreator;
+	@ManyToMany(cascade = { CascadeType.ALL })
+	@JoinTable(
+			  name = "event_user", 
+			  joinColumns = @JoinColumn(name = "event_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> userList = new ArrayList<User>();
 	
 	public Event() {
@@ -40,27 +51,32 @@ public class Event implements Serializable{
 	}
 	
 	//Constructor without id and userList
-	public Event(String eventName, String eventDescription, Date eventDate) {
+	public Event(String eventName, String eventDescription, Date eventDate, User creator) {
 		super();
 		this.eventName = eventName;
 		this.eventDescription = eventDescription;
 		this.eventDate = eventDate;
+		this.eventCreator = creator;
 	}
-
-	public Event(String eventName, String eventDescription, Date eventDate, List<User> userList) {
+	
+	
+	public Event(String eventName, String eventDescription, Date eventDate, User creator, List<User> userList) {
 		super();
 		this.eventName = eventName;
 		this.eventDescription = eventDescription;
 		this.eventDate = eventDate;
+		this.eventCreator = creator;
 		this.userList = userList;
 	}
 
-	public Event(int eventID, String eventName, String eventDescription, Date eventDate, List<User> userList) {
+	public Event(int eventID, String eventName, String eventDescription, Date eventDate, User creator,
+			List<User> userList) {
 		super();
 		this.eventID = eventID;
 		this.eventName = eventName;
 		this.eventDescription = eventDescription;
 		this.eventDate = eventDate;
+		this.eventCreator = creator;
 		this.userList = userList;
 	}
 
@@ -104,10 +120,19 @@ public class Event implements Serializable{
 		this.userList = userList;
 	}
 
+	public User getEventCreator() {
+		return eventCreator;
+	}
+
+	public void setEventCreator(User creator) {
+		this.eventCreator = creator;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((eventCreator == null) ? 0 : eventCreator.hashCode());
 		result = prime * result + ((eventDate == null) ? 0 : eventDate.hashCode());
 		result = prime * result + ((eventDescription == null) ? 0 : eventDescription.hashCode());
 		result = prime * result + eventID;
@@ -125,6 +150,11 @@ public class Event implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Event other = (Event) obj;
+		if (eventCreator == null) {
+			if (other.eventCreator != null)
+				return false;
+		} else if (!eventCreator.equals(other.eventCreator))
+			return false;
 		if (eventDate == null) {
 			if (other.eventDate != null)
 				return false;
@@ -153,7 +183,7 @@ public class Event implements Serializable{
 	@Override
 	public String toString() {
 		return "Event [eventID=" + eventID + ", eventName=" + eventName + ", eventDescription=" + eventDescription
-				+ ", eventDate=" + eventDate + "]";
+				+ ", eventDate=" + eventDate + ", eventCreator=" + eventCreator + ", userList=" + userList + "]";
 	}
 
 	

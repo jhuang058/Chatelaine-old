@@ -30,7 +30,7 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="user_id", nullable=false)
 	private int userID;
-	@Column(name="username", nullable=false)
+	@Column(name="username", nullable=false, unique=true)
 	private String username;
 	@Column(name="password", nullable=false)
 	private String password;
@@ -38,18 +38,14 @@ public class User implements Serializable{
 	private String firstName;
 	@Column(name="last_name", nullable=false)
 	private String lastName;
-	@Column(name="phone_number", nullable=false)
+	@Column(name="phone_number", nullable=false, unique=true)
 	private String phoneNumber;
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="user_role_id", nullable=false)
 	private Role userRole;
 	@Column(name="signed_lease", nullable=true)
 	private Blob signedLease;
-	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(
-			  name = "user_event", 
-			  joinColumns = @JoinColumn(name = "user_id"), 
-			  inverseJoinColumns = @JoinColumn(name = "event_id"))
+	@ManyToMany(mappedBy="userList")
 	private List<Event> eventList = new ArrayList<Event>();
 	
 	public User() {
