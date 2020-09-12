@@ -22,28 +22,22 @@ public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="user_role_id", nullable=false)
+	@Column(name="user_role_id")
 	private int roleID;
 	@Column(name="user_role", nullable=false)
 	private String role;
-	
-
-	@OneToMany(mappedBy="roleID", fetch=FetchType.LAZY)
-	private List<User> userList;
 
 
-	public Role(String role, List<User> userList) {
+	public Role(String role) {
 		super();
 		this.role = role;
-		this.userList = userList;
 	}
 
 
-	public Role(int roleID, String role, List<User> userList) {
+	public Role(int roleID, String role) {
 		super();
 		this.roleID = roleID;
 		this.role = role;
-		this.userList = userList;
 	}
 
 
@@ -70,21 +64,6 @@ public class Role implements Serializable {
 
 	public void setRole(String role) {
 		this.role = role;
-	}
-
-
-	public List<User> getUserList() {
-		return userList;
-	}
-
-
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
-	}
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 
