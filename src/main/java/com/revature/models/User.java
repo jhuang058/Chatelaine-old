@@ -2,12 +2,17 @@ package com.revature.models;
 
 import java.io.File;
 import java.io.Serializable;
+import java.sql.Blob;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -38,9 +43,28 @@ public class User implements Serializable{
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name="user_role_id", referencedColumnName ="user_role_id")
 	private Role userRole;
-	@Column(name="signed_lease", nullable=true)
-	private File signedLease;
-	
+	@Column(name = "signed_lease", nullable = true)
+	private Blob signedLease;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<MaintenanceTicket> maintenanceTickets;
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	private List<Events> events;
+
+	public User() {
+		super();
+	}
+
+	public User(String username, String password, String firstName, String lastName, String phoneNumber,
+			Role userRole) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.userRole = userRole;
+	}
+
 	public int getUserID() {
 		return userID;
 	}
@@ -83,13 +107,25 @@ public class User implements Serializable{
 	public void setUserRole(Role userRole) {
 		this.userRole = userRole;
 	}
-	public File getSignedLease() {
+	public Blob getSignedLease() {
 		return signedLease;
 	}
-	public void setSignedLease(File signedLease) {
+	public void setSignedLease(Blob signedLease) {
 		this.signedLease = signedLease;
 	}
+	public List<MaintenanceTicket> getMaintenanceTickets() {
+		return maintenanceTickets;
+	}
 
-	
-	
+	public void setMaintenanceTickets(List<MaintenanceTicket> maintenanceTickets) {
+		this.maintenanceTickets = maintenanceTickets;
+	}
+
+	public List<Events> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Events> events) {
+		this.events = events;
+	}
 }

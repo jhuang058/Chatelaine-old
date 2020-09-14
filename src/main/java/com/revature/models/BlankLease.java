@@ -35,13 +35,11 @@ public class BlankLease implements Serializable {
 	public BlankLease(String blankLeaseName, List<User> userList) {
 		super();
 		this.blankLeaseName = blankLeaseName;
-		this.userList = userList;
 	}
 	public BlankLease(int blankLeaseID, String blankLeaseName, List<User> userList) {
 		super();
 		this.blankLeaseID = blankLeaseID;
 		this.blankLeaseName = blankLeaseName;
-		this.userList = userList;
 	}
 	public int getBlankLeaseID() {
 		return blankLeaseID;
@@ -54,12 +52,6 @@ public class BlankLease implements Serializable {
 	}
 	public void setBlankLeaseName(String blankLeaseName) {
 		this.blankLeaseName = blankLeaseName;
-	}
-	public List<User> getUserList() {
-		return userList;
-	}
-	public void setUserList(List<User> userList) {
-		this.userList = userList;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
