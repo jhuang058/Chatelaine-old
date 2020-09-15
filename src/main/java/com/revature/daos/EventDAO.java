@@ -46,7 +46,7 @@ public class EventDAO implements IEventDAO {
 			trans.commit();
 			return true;
 		} catch (HibernateException e) {
-			log.info("Could not add Type");
+			log.info("Could not add Event");
 			e.printStackTrace();
 			return false;
 		}

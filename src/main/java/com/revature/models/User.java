@@ -43,8 +43,6 @@ public class User implements Serializable{
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="user_role_id", nullable=false)
 	private Role userRole;
-	@Column(name="signed_lease", nullable=true)
-	private Blob signedLease;
 	@ManyToMany(mappedBy="userList")
 	private List<Event> eventList = new ArrayList<Event>();
 	
@@ -53,8 +51,7 @@ public class User implements Serializable{
 	}
 	
 //Constructor without id and eventList
-	public User(String username, String password, String firstName, String lastName, String phoneNumber, Role userRole,
-			Blob signedLease) {
+	public User(String username, String password, String firstName, String lastName, String phoneNumber, Role userRole) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -62,7 +59,7 @@ public class User implements Serializable{
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
 		this.userRole = userRole;
-		this.signedLease = signedLease;
+	
 	}
 
 
@@ -77,12 +74,11 @@ public class User implements Serializable{
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
 		this.userRole = userRole;
-		this.signedLease = signedLease;
+
 		this.eventList = eventList;
 	}
 
-	public User(String username, String password, String firstName, String lastName, String phoneNumber, Role userRole,
-			Blob signedLease, List<Event> eventList) {
+	public User(String username, String password, String firstName, String lastName, String phoneNumber, Role userRole, List<Event> eventList) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -90,7 +86,6 @@ public class User implements Serializable{
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
 		this.userRole = userRole;
-		this.signedLease = signedLease;
 		this.eventList = eventList;
 	}
 
@@ -156,13 +151,7 @@ public class User implements Serializable{
 		this.userRole = userRole;
 	}
 
-	public Blob getSignedLease() {
-		return signedLease;
-	}
-
-	public void setSignedLease(Blob signedLease) {
-		this.signedLease = signedLease;
-	}
+	
 
 	public List<Event> getEventList() {
 		return eventList;
@@ -170,6 +159,15 @@ public class User implements Serializable{
 
 	public void setEventList(List<Event> eventList) {
 		this.eventList = eventList;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", userRole=" + userRole
+				+ ", eventList=" + eventList + "]";
 	}
 
 	@Override
@@ -181,7 +179,6 @@ public class User implements Serializable{
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
-		result = prime * result + ((signedLease == null) ? 0 : signedLease.hashCode());
 		result = prime * result + userID;
 		result = prime * result + ((userRole == null) ? 0 : userRole.hashCode());
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
@@ -222,11 +219,6 @@ public class User implements Serializable{
 				return false;
 		} else if (!phoneNumber.equals(other.phoneNumber))
 			return false;
-		if (signedLease == null) {
-			if (other.signedLease != null)
-				return false;
-		} else if (!signedLease.equals(other.signedLease))
-			return false;
 		if (userID != other.userID)
 			return false;
 		if (userRole == null) {
@@ -240,13 +232,6 @@ public class User implements Serializable{
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", userRole=" + userRole
-				+ ", signedLease=" + signedLease + ", eventList=" + eventList + "]";
 	}
 	
 	
