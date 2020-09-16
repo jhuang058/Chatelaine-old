@@ -12,6 +12,10 @@ import org.hibernate.Transaction;
 import com.revature.models.Event;
 import com.revature.utils.HibernateUtil;
 
+
+
+@Repository
+@Transactional
 public class EventDAO implements IEventDAO {
 	private static final Logger log = LogManager.getLogger(EventDAO.class);
 

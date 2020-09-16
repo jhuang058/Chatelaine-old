@@ -33,7 +33,7 @@ public class Driver {
 
 	public static void insertValues() throws NoSuchAlgorithmException {
 		String pw1 = Hash.generateHash("ilikesushi", "MD5");
-		String pw2 = Hash.generateHash("ilikehoney", "MD5");
+		//String pw2 = Hash.generateHash("ilikehoney", "MD5");
 		
 		Role r = new Role("Tenant");
 		

@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 
-import com.revature.models.Event;
 
 import com.revature.models.Role;
 import com.revature.models.User;

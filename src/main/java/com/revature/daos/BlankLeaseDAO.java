@@ -1,6 +1,6 @@
 package com.revature.daos;
 
-import java.sql.Blob;
+
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
