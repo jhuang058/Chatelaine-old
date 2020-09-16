@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.revature.models.Event;
-import com.revature.models.Events;
+
 
 public interface IEventDAO {
 	
