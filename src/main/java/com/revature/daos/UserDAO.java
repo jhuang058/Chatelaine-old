@@ -2,10 +2,13 @@ package com.revature.daos;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import com.revature.models.Event;
 
@@ -13,6 +16,8 @@ import com.revature.models.Role;
 import com.revature.models.User;
 import com.revature.utils.HibernateUtil;
 
+@Repository
+@Transactional
 public class UserDAO implements IUserDAO {
 
 	private static final Logger log = LogManager.getLogger(UserDAO.class);
@@ -61,6 +66,14 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public Role findUserRole(User u) {
 		return null;
+	}
+
+	@Override
+	public User findByUsernameAndPassword(String username, String password) {
+		Session session = HibernateUtil.getSession();
+
+		User u = session.createQuery("FROM User WHERE username='" + username+ "' AND password ='" + password + "'", User.class).list().get(0);
+		return u;
 	}
 
 }
