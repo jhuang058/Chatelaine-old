@@ -13,10 +13,10 @@ import com.revature.models.User;
 
 @Service
 public class leaseServices {
-	@Autowired
+	
 	private LeaseDAO lDAO;
 	private BlankLeaseDAO bDAO;
-
+	@Autowired
 	public leaseServices() {
 	}
 
@@ -36,17 +36,6 @@ public class leaseServices {
 	 return lDAO.updateLease(id);
 	}
 
-
-
-	public Lease addLease(Lease l) {
-		return lDAO.addLease(l);
-	}
-
-
-
-	public Lease updateLease(Lease l) {
-		return lDAO.updateLease(l);
-	}
 
 
 

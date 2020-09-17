@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.revature.models.Role;
-import com.revature.models.TicketStatus;
+
 import com.revature.models.User;
 
 

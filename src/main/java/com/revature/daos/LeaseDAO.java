@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.Lease;
-import com.revature.models.User;
+
 
 @Repository
 @Transactional
@@ -74,32 +74,9 @@ public class LeaseDAO implements ILeaseDAO {
 		}
 	}
 
-	@Override
-	public Lease addLease(Lease l) {
-		Session ses = sf.getCurrentSession();
-		try {
-			ses.save(l);
-			return l;
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			return l;
-		}
-	}
 
-	@Override
-	public Lease updateLease(Lease l) {
-		Session ses = sf.getCurrentSession();
-		Transaction tx = ses.beginTransaction();
-		try {
-			ses.merge(l);
-			tx.commit();
-			return l;
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			tx.rollback();
-			return l;
-		}
-	}
+	
+	
 
 	
 

@@ -29,7 +29,8 @@ public class LeaseController {
 	
 	@Autowired
 	private leaseServices lServices;
-
+	
+	@Autowired
 	public LeaseController(leaseServices lServices) {
 		super();
 		this.lServices = lServices;
@@ -66,25 +67,8 @@ public class LeaseController {
 				return ResponseEntity.status(HttpStatus.SC_ACCEPTED).body(lease);
 			}
 			
-			@PutMapping
-			public ResponseEntity<Lease> updateLease(@RequestBody Lease l) {
-				Lease lease = lServices.updateLease(l);
-				if(lease==null) {
-					return ResponseEntity.status(HttpStatus.SC_NO_CONTENT).build(); 
-				}
-				return ResponseEntity.status(HttpStatus.SC_ACCEPTED).body(lease);
-			}
 			
 			
-			
-			@PostMapping
-			public ResponseEntity<Lease> addLease(@RequestBody Lease l) {
-				Lease temp = lServices.addLease(l);
-				if (temp == null) {
-					return ResponseEntity.status(HttpStatus.SC_NO_CONTENT).build(); //sends back an empty body in the response. 
-				}
-				return ResponseEntity.status(HttpStatus.SC_ACCEPTED).body(l);
-			}
-				
+		
 
 }
