@@ -13,10 +13,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 
@@ -43,8 +43,8 @@ public class User implements Serializable{
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="user_role_id", nullable=false)
 	private Role userRole;
-//	@ManyToMany(mappedBy="userList")
-//	private List<Event> eventList = new ArrayList<Event>();
+	@ManyToMany(mappedBy="userList")
+	private List<Event> eventList = new ArrayList<Event>();
 	
 	public User() {
 		super();
@@ -153,22 +153,22 @@ public class User implements Serializable{
 
 	
 
-//	public List<Event> getEventList() {
-//		return eventList;
-//	}
-//
-//	public void setEventList(List<Event> eventList) {
-//		this.eventList = eventList;
-//	}
-//
-//	
-//
-//	@Override
-//	public String toString() {
-//		return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", firstName="
-//				+ firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", userRole=" + userRole
-//				+ ", eventList=" + eventList + "]";
-//	}
+	public List<Event> getEventList() {
+		return eventList;
+	}
+
+	public void setEventList(List<Event> eventList) {
+		this.eventList = eventList;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", userRole=" + userRole
+				+ ", eventList=" + eventList + "]";
+	}
 
 	@Override
 	public int hashCode() {

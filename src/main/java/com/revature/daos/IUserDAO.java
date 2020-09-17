@@ -11,6 +11,7 @@ public interface IUserDAO {
 	public User findByUsernameAndPassword(String username, String password);
 	public User findById(int id);
 	public List<User> findAll();
-	public boolean addUser(User u);
-	public Role findUserRole(User u);
+	public User addUser(User u);
+	public Role findUserRole(int id);
+	User updateUser(User u);
 }

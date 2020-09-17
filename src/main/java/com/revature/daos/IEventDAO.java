@@ -1,7 +1,7 @@
 package com.revature.daos;
 
 import java.sql.Date;
-import java.sql.Timestamp;
+
 import java.util.List;
 
 import com.revature.models.Event;

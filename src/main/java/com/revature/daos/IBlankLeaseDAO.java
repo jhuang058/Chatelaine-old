@@ -1,6 +1,6 @@
 package com.revature.daos;
 
-import java.sql.Blob;
+
 
 import com.revature.models.BlankLease;
 

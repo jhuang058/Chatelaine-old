@@ -18,6 +18,10 @@ import com.revature.models.Event;
 import com.revature.models.MaintenanceTicket;
 import com.revature.models.User;
 
+
+
+@Repository
+@Transactional
 public class EventDAO implements IEventDAO {
 	private static final Logger log = LogManager.getLogger(EventDAO.class);
 	private SessionFactory sf;

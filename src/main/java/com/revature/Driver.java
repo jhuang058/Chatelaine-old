@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daos.EventDAO;
 import com.revature.daos.IEventDAO;
@@ -14,7 +17,7 @@ import com.revature.models.Event;
 import com.revature.models.Role;
 import com.revature.models.User;
 import com.revature.utils.Hash;
-import com.revature.utils.HibernateUtil;
+
 
 public class Driver {
 
@@ -31,9 +34,10 @@ public class Driver {
 	}
 	
 
+	@Transactional
 	public static void insertValues() throws NoSuchAlgorithmException {
 		String pw1 = Hash.generateHash("ilikesushi", "MD5");
-		String pw2 = Hash.generateHash("ilikehoney", "MD5");
+		//String pw2 = Hash.generateHash("ilikehoney", "MD5");
 		
 		Role r = new Role("Tenant");
 		
@@ -53,14 +57,14 @@ public class Driver {
 		
 //		IUserDAO uDao = new UserDAO();
 //		uDao.addUser(u);
-
-		Session ses2 = HibernateUtil.getSession();
-		Transaction trans2 = ses2.beginTransaction();
-		try {
-			ses2.save(u);
-			trans2.commit();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
+		SessionFactory sf;
+//		Session ses2 = sf.getCurrentSession();
+//		Transaction trans2 = ses2.beginTransaction();
+//		try {
+//			ses2.save(u);
+//			trans2.commit();
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//		}
 	}
 }
