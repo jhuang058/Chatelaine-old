@@ -1,1 +1,6 @@
+*.logs
 
+/target/
+
+pom.xml
+pom.properties
