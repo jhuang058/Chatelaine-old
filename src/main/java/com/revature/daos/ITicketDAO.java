@@ -21,4 +21,8 @@ public interface ITicketDAO {
 
 	boolean updateTicket(MaintenanceTicket t);
 
+	public static void main(String[] args) {
+		
+	}
+
 }

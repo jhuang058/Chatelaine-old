@@ -28,7 +28,7 @@ import com.revature.services.UserServices;
 @ResponseBody //This will at compile time add @ResponseBody to all methods in the class
 public class UserController {
 
-	@Autowired
+	
 	private UserServices uServices;
 	
 

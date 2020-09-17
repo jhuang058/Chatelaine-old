@@ -27,7 +27,7 @@ import com.revature.services.leaseServices;
 @ResponseBody 
 public class LeaseController {
 	
-	@Autowired
+	
 	private leaseServices lServices;
 	
 	@Autowired

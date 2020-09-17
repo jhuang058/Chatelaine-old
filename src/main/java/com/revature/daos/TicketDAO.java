@@ -20,14 +20,13 @@ import com.revature.models.User;
 
 @Repository
 @Transactional
-public class TicketDAO implements ITicketDAO{	private SessionFactory sf;
-<<<<<<< HEAD
+public class TicketDAO implements ITicketDAO{	
+	
+	private SessionFactory sf;
+
 	private IUserDAO uDao;
-||||||| 5c499e3
-	private IUserDAO uDao = new UserDAO();
-=======
-	private IUserDAO uDao = new UserDAO(sf);
->>>>>>> ece4f5c0d1fd1f92d9a93cc13ad364f0c1b0bf20
+
+
 	private static final Logger log = LogManager.getLogger(EventDAO.class);
 	
 	@Autowired
