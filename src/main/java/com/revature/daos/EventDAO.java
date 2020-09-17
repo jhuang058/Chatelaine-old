@@ -17,8 +17,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.Event;
-import com.revature.models.MaintenanceTicket;
-import com.revature.models.User;
 
 
 
@@ -106,6 +104,17 @@ public class EventDAO implements IEventDAO {
 		Query q = session.createQuery("FROM Event WHERE eventDate < :date");
 		q.setParameter("date", date);
 		List<Event> list = q.getResultList();
+		return list;
+	}
+	
+	@Override
+	public List<Event> findByUser(int userId) {
+		Session session = sf.getCurrentSession();
+
+		Query q = session.createQuery("FROM Event e JOIN e.userList u where u.userID=:userId");
+		q.setParameter("userId", userId);
+		List<Event> list = q.getResultList();
+				
 		return list;
 	}
 
