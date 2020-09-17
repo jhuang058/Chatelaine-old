@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.daos.BlankLeaseDAO;
 import com.revature.daos.LeaseDAO;
+import com.revature.models.BlankLease;
 import com.revature.models.Lease;
 import com.revature.models.User;
 
@@ -13,9 +15,9 @@ import com.revature.models.User;
 public class leaseServices {
 	@Autowired
 	private LeaseDAO lDAO;
+	private BlankLeaseDAO bDAO;
 
 	public leaseServices() {
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -24,8 +26,8 @@ public class leaseServices {
 		return lDAO.findLeaseByTenant(id);
 	}
 
-	public List<User> findAllLease() {
-		return null;
+	public List<Lease> findAllLease() {
+		return lDAO.findAllLease();
 	}
 
 
@@ -38,6 +40,18 @@ public class leaseServices {
 
 	public Lease addLease(Lease l) {
 		return lDAO.addLease(l);
+	}
+
+
+
+	public Lease updateLease(Lease l) {
+		return lDAO.updateLease(l);
+	}
+
+
+
+	public BlankLease findBlankLease() {
+		return bDAO.findBlankLease();
 	}
 
 

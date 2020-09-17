@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.models.BlankLease;
 import com.revature.models.Lease;
 import com.revature.models.Role;
 import com.revature.models.User;
@@ -22,9 +23,8 @@ import com.revature.services.UserServices;
 import com.revature.services.leaseServices;
 
 @RestController
-//Adding the URI mapping for what requests this controller will handle
 @RequestMapping(value="/lease")
-@ResponseBody //This will at compile time add @ResponseBody to all methods in the class
+@ResponseBody 
 public class LeaseController {
 	
 	@Autowired
@@ -37,8 +37,13 @@ public class LeaseController {
 	
 	
 			@RequestMapping(method=RequestMethod.GET)
-			public List<User> assemble() {
+			public List<Lease> getAllLease() {
 				return lServices.findAllLease();
+			}
+			
+			@RequestMapping(method=RequestMethod.GET)
+			public BlankLease getBlankLease() {
+				return lServices.findBlankLease();
 			}
 			
 			@GetMapping("/{id}") 
@@ -60,6 +65,16 @@ public class LeaseController {
 				}
 				return ResponseEntity.status(HttpStatus.SC_ACCEPTED).body(lease);
 			}
+			
+			@PutMapping
+			public ResponseEntity<Lease> updateLease(@RequestBody Lease l) {
+				Lease lease = lServices.updateLease(l);
+				if(lease==null) {
+					return ResponseEntity.status(HttpStatus.SC_NO_CONTENT).build(); 
+				}
+				return ResponseEntity.status(HttpStatus.SC_ACCEPTED).body(lease);
+			}
+			
 			
 			
 			@PostMapping

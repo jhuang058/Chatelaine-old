@@ -31,6 +31,7 @@ public class UserDAO implements IUserDAO {
 		this.sf=sf;
 	}
 
+	
 	@Override
 	public User findByUsername(String username) {
 		Session session = sf.getCurrentSession();

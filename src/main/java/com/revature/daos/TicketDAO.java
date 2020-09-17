@@ -20,7 +20,7 @@ import com.revature.models.User;
 public class TicketDAO implements ITicketDAO{
 
 	private SessionFactory sf;
-	private IUserDAO uDao = new UserDAO();
+	private IUserDAO uDao = new UserDAO(sf);
 	private static final Logger log = LogManager.getLogger(EventDAO.class);
 	
 	@Autowired
