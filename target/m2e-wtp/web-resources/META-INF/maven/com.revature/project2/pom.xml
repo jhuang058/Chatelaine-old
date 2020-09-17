@@ -109,8 +109,22 @@
 		</dependency>
 		
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>5.2.9.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>2.3.3.RELEASE</version>
+		</dependency>
 	</dependencies>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 65b17e0d6e59a235b6d19ff90577c76e94c91e9c
 	<build>
 		<plugins>
 			<plugin>
@@ -119,6 +133,9 @@
 			</plugin>
 		</plugins>
 	</build>
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 65b17e0d6e59a235b6d19ff90577c76e94c91e9c
 
 </project>
