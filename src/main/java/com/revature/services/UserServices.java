@@ -49,12 +49,16 @@ public class UserServices {
 		return userDAO.findAll();
 		
 	}
-	public boolean addUser(User u) {
+	public User addUser(User u) {
 		return userDAO.addUser(u);
 	}
-	public Role findUserRole(User u) {
-		return userDAO.findUserRole(u);
+	public Role findUserRole(int id) {
+		return userDAO.findUserRole(id);
 		
+	}
+
+	public User updateUser(User p) {
+		return userDAO.updateUser(p);
 	}
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.revature.models.Role;
+import com.revature.models.TicketStatus;
 import com.revature.models.User;
 
 
@@ -58,21 +59,25 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public boolean addUser(User u) {
+	public User addUser(User u) {
 		Session ses = sf.getCurrentSession();
+	
 		
 		try {
 			ses.save(u);
-			return true;
+			return u;
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			log.info("Could not add User");
-			return false;
+			return u;
 		}
 	}
 
 	@Override
-	public Role findUserRole(User u) {
+	public Role findUserRole(int id) {
+		Session ses = sf.getCurrentSession();
+		Role role = ses.get(Role.class, id);
+		
 		return null;
 	}
 
@@ -81,6 +86,13 @@ public class UserDAO implements IUserDAO {
 		Session session = sf.getCurrentSession();
 
 		User u = session.createQuery("FROM User WHERE username='" + username+ "' AND password ='" + password + "'", User.class).list().get(0);
+		return u;
+	}
+	
+	@Override
+	public User updateUser(User u) {
+		Session s = sf.getCurrentSession();
+		s.update(u);
 		return u;
 	}
 
