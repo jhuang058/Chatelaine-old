@@ -76,7 +76,7 @@ public class UserController {
 		}
 		
 		@PutMapping
-		public ResponseEntity<User> update(@RequestBody User p) {// Takes the JSON from the request and puts it in the indicated object
+		public ResponseEntity<User> updateUser(@RequestBody User p) {// Takes the JSON from the request and puts it in the indicated object
 			p = uServices.updateUser(p);
 			if(p==null) {
 				return ResponseEntity.status(HttpStatus.SC_NO_CONTENT).build(); //sends back an empty body in the response. 

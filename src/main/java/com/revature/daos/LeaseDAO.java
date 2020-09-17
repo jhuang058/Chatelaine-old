@@ -4,13 +4,16 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaQuery;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.Lease;
+import com.revature.models.User;
 
 @Repository
 @Transactional
@@ -54,5 +57,50 @@ public class LeaseDAO implements ILeaseDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Lease updateLease(int id) {
+		Session ses = sf.getCurrentSession();
+		Transaction tx = ses.beginTransaction();
+		Lease lease = findLeaseByTenant(id);
+		try {
+			ses.merge(lease);
+			tx.commit();
+			return lease;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+			return lease;
+		}
+	}
+
+	@Override
+	public Lease addLease(Lease l) {
+		Session ses = sf.getCurrentSession();
+		try {
+			ses.save(l);
+			return l;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return l;
+		}
+	}
+
+	@Override
+	public Lease updateLease(Lease l) {
+		Session ses = sf.getCurrentSession();
+		Transaction tx = ses.beginTransaction();
+		try {
+			ses.merge(l);
+			tx.commit();
+			return l;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+			return l;
+		}
+	}
+
+	
 
 }

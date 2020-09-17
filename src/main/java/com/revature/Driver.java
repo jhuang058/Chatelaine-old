@@ -50,10 +50,10 @@ public class Driver {
 		userList.add(u);
 
 		e.setUserList(userList);
-		u.setEventList(eventList);
-
-		IEventDAO eDao = new EventDAO();
-		eDao.addEvent(e);
+//		u.setEventList(eventList);
+//
+//      IEventDAO eDao = new EventDAO();
+//		eDao.addEvent(e);
 		
 //		IUserDAO uDao = new UserDAO();
 //		uDao.addUser(u);
