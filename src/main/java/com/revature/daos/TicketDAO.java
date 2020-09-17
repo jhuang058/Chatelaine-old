@@ -11,16 +11,19 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.models.MaintenanceTicket;
 import com.revature.models.TicketStatus;
 import com.revature.models.User;
 
-
+@Repository
+@Transactional
 public class TicketDAO implements ITicketDAO{
 
 	private SessionFactory sf;
-	private IUserDAO uDao = new UserDAO();
+	private IUserDAO uDao;
 	private static final Logger log = LogManager.getLogger(EventDAO.class);
 	
 	@Autowired

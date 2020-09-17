@@ -15,5 +15,6 @@ public interface IEventDAO {
 	boolean updateEvent(Event ev);
 	List<Event> findUpcoming(Date date);
 	List<Event> findPast(Date date);
+	List<Event> findByUser(int userId);
 	
 }
