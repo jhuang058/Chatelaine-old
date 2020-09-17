@@ -1,3 +1,5 @@
 *.logs
 
 /target/
+
+pom.xml

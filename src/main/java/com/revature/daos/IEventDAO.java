@@ -12,5 +12,8 @@ public interface IEventDAO {
 	public List<Event> findAll();
 	public Event findByDate(Date date);
 	public boolean addEvent(Event event);
+	boolean updateEvent(Event ev);
+	List<Event> findUpcoming(Date date);
+	List<Event> findPast(Date date);
 	
 }

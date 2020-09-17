@@ -4,23 +4,34 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature.models.MaintenanceTicket;
 import com.revature.models.TicketStatus;
 import com.revature.models.User;
-import com.revature.utils.HibernateUtil;
 
 
 public class TicketDAO implements ITicketDAO{
 
+	private SessionFactory sf;
 	private IUserDAO uDao = new UserDAO();
+	private static final Logger log = LogManager.getLogger(EventDAO.class);
+	
+	@Autowired
+	public TicketDAO(SessionFactory sf) {
+		super();
+		this.sf = sf;
+	}
 
 	@Override
 	public MaintenanceTicket findById(int id) {
-		Session ses = HibernateUtil.getSession();
+		Session ses = sf.getCurrentSession();
 		
 		MaintenanceTicket t = ses.get(MaintenanceTicket.class, id);
 		return t;
@@ -28,7 +39,7 @@ public class TicketDAO implements ITicketDAO{
 
 	@Override
 	public List<MaintenanceTicket> findAll() {
-		Session ses = HibernateUtil.getSession();
+		Session ses = sf.getCurrentSession();
 		
 		List<MaintenanceTicket> list = ses.createQuery("FROM MaintenanceTicket").list();
 		return list;
@@ -36,7 +47,7 @@ public class TicketDAO implements ITicketDAO{
 
 	@Override
 	public TicketStatus findTicketStatus(int id) {
-		Session ses = HibernateUtil.getSession();
+		Session ses = sf.getCurrentSession();
 		
 		TicketStatus status = ses.get(TicketStatus.class, id);
 		return status;
@@ -44,20 +55,21 @@ public class TicketDAO implements ITicketDAO{
 
 	@Override
 	public boolean addTicket(MaintenanceTicket t) {
-		Session ses = HibernateUtil.getSession();
+		Session ses = sf.getCurrentSession();
 		
 		try {
 			ses.save(t);
 			return true;
 		} catch (HibernateException e) {
 			e.printStackTrace();
+			log.info("Could not add Ticket");
 			return false;
 		}
 	}
 
 	@Override
 	public List<MaintenanceTicket> findByAuthor(int id) {
-		Session ses = HibernateUtil.getSession();
+		Session ses = sf.getCurrentSession();
 		
 		User u = uDao.findById(id);
 		Query query = ses.createQuery("FROM MaintenanceTicket where author=:author",MaintenanceTicket.class);
@@ -68,7 +80,7 @@ public class TicketDAO implements ITicketDAO{
 
 	@Override
 	public List<MaintenanceTicket> findByStatus(int id) {
-		Session ses = HibernateUtil.getSession();
+		Session ses = sf.getCurrentSession();
 		
 		TicketStatus status = findTicketStatus(id);
 		Query query = ses.createQuery("FROM MaintenanceTicket where status=:ts",MaintenanceTicket.class);
@@ -79,7 +91,7 @@ public class TicketDAO implements ITicketDAO{
 
 	@Override
 	public boolean updateTicket(MaintenanceTicket t) {
-		Session ses = HibernateUtil.getSession();
+		Session ses = sf.getCurrentSession();
 		
 		Transaction tx = ses.beginTransaction();
 		
@@ -89,6 +101,7 @@ public class TicketDAO implements ITicketDAO{
 			return true;
 		} catch (HibernateException e) {
 			e.printStackTrace();
+			log.info("Could not update Ticket");
 			tx.rollback();
 			return false;
 		}
