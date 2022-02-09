@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Property Management System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active" *ngIf = "loggedInUser">
+          <a class="nav-link" [routerLink]="">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="/documents">Documents</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="/events">Events</a>
+        </li>
+        <li class="nav-item" >
+            <a class="nav-link" routerLink="/tickets">Maintenance</a>
+        </li>
+        </ul>
+        <div class="dropdown" *ngIf = "loggedInUser">
+          <span class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{loggedInUser?.firstName}}  {{loggedInUser?.lastName}}
+          </span>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="/userProfile">Profile</a>
+            <a class="dropdown-item" href="#">Logout</a>
+          </div>
+        </div>
+        <div class="dropdown" *ngIf = "!loggedInUser">
+          <a class = "btn" href = "/login">Login</a>
+          <a class = "btn" href = "/register">Register</a>
+
+        </div>
+      </div>
+    </nav> 
+    <br/> <br/>
+
+
+
+
+    
+  <div class = "center">
+    <router-outlet></router-outlet>
+  
+  </div>
+
+
+
